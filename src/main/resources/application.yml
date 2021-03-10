@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: wj-exercise-service
+  zipkin:
+    base-url: http://localhost:9411/
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8888/auth/realms/workout-journal
+
+server:
+  port: 8080
