@@ -1,9 +1,6 @@
 package pl.michalpiotrowski.wjexerciseservice.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -16,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Exercise {
 
     @Id
@@ -30,4 +28,5 @@ public class Exercise {
     private String videoUrl;
     private ExerciseType type;
     private ExerciseCategory category;
+    private String user;
 }

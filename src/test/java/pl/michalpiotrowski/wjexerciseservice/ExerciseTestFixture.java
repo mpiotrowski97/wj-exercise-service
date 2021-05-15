@@ -9,4 +9,5 @@ public class ExerciseTestFixture {
     public static String EXERCISE_CATEGORY = "BICEPS";
     public static String EXERCISE_TYPE = "WEIGHT";
     public static String EXERCISE_VIDEO_URL = "http://youtube.pl";
+    public static String EXERCISE_USER = "test_user@example.org";
 }

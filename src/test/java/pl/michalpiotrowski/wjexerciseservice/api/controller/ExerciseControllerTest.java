@@ -2,17 +2,21 @@ package pl.michalpiotrowski.wjexerciseservice.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.val;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.michalpiotrowski.wjapispecification.dto.exercise.NewExerciseDto;
+import pl.michalpiotrowski.wjapispecification.dto.exercise.ExerciseDtoRequest;
 import pl.michalpiotrowski.wjapispecification.dto.exercise.ExerciseDto;
 import pl.michalpiotrowski.wjexerciseservice.ExerciseTestFixture;
+import pl.michalpiotrowski.wjexerciseservice.application.service.UserService;
 import pl.michalpiotrowski.wjexerciseservice.domain.Exercise;
 import pl.michalpiotrowski.wjexerciseservice.domain.ExerciseCategory;
 import pl.michalpiotrowski.wjexerciseservice.domain.ExerciseRepository;
@@ -37,9 +41,17 @@ public class ExerciseControllerTest {
     @Autowired
     ExerciseRepository exerciseRepository;
 
+    @MockBean
+    UserService userService;
+
+    @Before
+    public void setUp() {
+        Mockito.when(userService.getCurrentUserName()).thenReturn(ExerciseTestFixture.EXERCISE_USER);
+    }
+
     @Test
     public void createExerciseTest() throws Exception {
-        val newExerciseDto = NewExerciseDto
+        val newExerciseDto = ExerciseDtoRequest
                 .builder()
                 .name(ExerciseTestFixture.EXERCISE_NAME)
                 .type(ExerciseTestFixture.EXERCISE_TYPE)
@@ -70,6 +82,7 @@ public class ExerciseControllerTest {
                         .name(ExerciseTestFixture.EXERCISE_NAME)
                         .category(ExerciseCategory.BICEPS)
                         .type(ExerciseType.TIME)
+                        .user(ExerciseTestFixture.EXERCISE_USER)
                         .build()
         );
 
